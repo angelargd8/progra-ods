@@ -154,9 +154,9 @@ class Primaria(Tk):
         #Pantalla 
         Label(text="¿Qué curso desea tomar?", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=260,y=20)
         Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Matemáticas",command=lambda:self.matem()).place(x=280,y=120)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Comunicación", command=lambda:self.comu()).place(x=280,y=170)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Ciencias naturales", command=lambda:self.cs()).place(x=280,y=230)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Sociales", command=lambda:self.ss()).place(x=280,y=290)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Comunicación", command=lambda:self.comu()).place(x=280,y=190)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Ciencias", command=lambda:self.cs()).place(x=280,y=260)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046",text="Sociales", command=lambda:self.ss()).place(x=280,y=330)
         self.mainloop()
 
     #regreso
