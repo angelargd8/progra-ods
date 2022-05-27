@@ -13,6 +13,7 @@
 from tkinter import *
 from tkinter import messagebox
 import csv
+import Registrar as reg
 
 class v1(Tk):
     def __init__(self):
@@ -38,8 +39,13 @@ class v1(Tk):
         Button(height=1, width=15 , bg="#deaaff", fg="#240046" ,text="Ingresar", command=lambda:self.iniciarSesion()).place(x=355,y=300)
         Label(text="-------------------------------------------------------", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=225,y=325)
         Label(text="Aún no tienes cuenta?\nInscribite aquí:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=325,y=350)
-        Button(height=1, width=15 , bg="#deaaff", fg="#240046" , text="Registrarse", command=lambda:self.ventana2()).place(x=355,y=420)
+        Button(height=1, width=15 , bg="#deaaff", fg="#240046" , text="Registrarse", command=lambda:self.registrar()).place(x=355,y=420)
         self.mainloop()
+
+
+    def registrar(self):
+        self.destroy()
+        ventana2 = Registro()
 
     def iniciarSesion(self):
         self.usuario = (self.c1.get())
@@ -60,7 +66,42 @@ class v1(Tk):
             ventana2 = v2()
         else:
             messagebox.showerror("Error","Error: Contraseña o Usuario incorrectos")
-        
+
+
+class Registro(Tk):
+    def __init__(self):
+        Tk.__init__(self)
+        #Configuracion
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Pantalla principal")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        Label(text="Nuevo Usuario", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=250,y=20)
+        Label(text="Ingrese nombre de usuario: ", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=10,y=150)
+        self.c1 = Entry(width=40) 
+        self.c1.place(x=250,y=155)
+        Label(text="Ingrese Contraseña: ", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=10,y=220)
+        self.c2 = Entry(width=40)
+        self.c2.place(x=250,y=225)
+        Button(height=2, width=50 ,text="Ingresar Datos", bg="#deaaff", fg="#240046", command=lambda:self.ingresarDatos()).place(x=300,y=300)
+        #Pantalla 
+        self.mainloop()
+
+    def ingresarDatos(self):
+        nombre = self.c1.get()
+        contra = self.c2.get()
+        confirmacion = reg.ingrearRegistro(nombre,contra)
+        if confirmacion:
+            self.destroy()
+            ventana = v1()
+
+    #regresar
+    def regres(self):
+        self.destroy()
+        ventana = v1()
+
+
 class v2(Tk):
     def __init__(self):
         Tk.__init__(self)
