@@ -284,15 +284,19 @@ class mate(Tk):
         #Pantalla 
         Label(text="Matemáticas", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=290,y=20)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Operacion básicos",command=lambda:self.operaciones()).place(x=40,y=110)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Derivadas").place(x=280,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Derivadas",command=lambda:self.otrasOperaciones('derivada')).place(x=280,y=110)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Integrales").place(x=520,y=110)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Geometría").place(x=40,y=200)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Cálculo").place(x=280,y=200)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones líneales").place(x=520,y=200)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones cuadraticas").place(x=40,y=290)
-        if self.usuario == 'gerax5' or self.usuario == 'angela':
+        if self.usuario == 'admin':
             Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Estadisticas matematicas",command=lambda:self.esta()).place(x=350,y=400)
         self.mainloop()
+
+    def otrasOperaciones(self,accion):
+        self.destroy()
+        vantana = pantallaEjemplos(self.usuario, accion)
 
     def esta(self):
         self.destroy()
@@ -306,6 +310,8 @@ class mate(Tk):
         self.destroy()
         ventana = opera(self.usuario)
 
+#---------------------------------------------------------------- 
+
 class estadisticas(Tk):
     def __init__(self,usuario):
         Tk.__init__(self)
@@ -318,8 +324,8 @@ class estadisticas(Tk):
         #Pantalla 
         Label(text="Estadisticas Matematicas", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=290,y=20)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Operaciones básicas",command=lambda:self.estadistica('operaciones_basicas')).place(x=40,y=110)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Derivadas").place(x=280,y=110)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Integrales").place(x=520,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Derivadas",command=lambda:self.estadistica('derivada')).place(x=280,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Integrales",command=lambda:self.estadistica('integral')).place(x=520,y=110)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Geometría").place(x=40,y=200)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Cálculo").place(x=280,y=200)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones líneales").place(x=520,y=200)
@@ -332,6 +338,8 @@ class estadisticas(Tk):
     def regres(self):
         self.destroy()
         ventana = mate(self.usuario)
+
+#------------------------------------------------
 
 class opera(Tk):
     def __init__(self,usuario):
@@ -356,10 +364,10 @@ class opera(Tk):
 
     def operacionBasica(self,accion):
         self.destroy()
-        ventana = pantallaOperacionBasica(self.usuario,accion)
+        ventana = pantallaEjemplos(self.usuario,accion)
 
 
-class pantallaOperacionBasica(Tk):
+class pantallaEjemplos(Tk):
     def __init__(self,usuario,accion):
         Tk.__init__(self)
         self.usuario = usuario
@@ -404,6 +412,24 @@ class pantallaOperacionBasica(Tk):
             Label(text="5 / 5 = 1", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
             Label(text="80 / 8 = 10", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
             Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ejercicio",command=lambda:self.ejercic('division')).place(x=370,y=390)
+        if accion == 'derivada':
+            self.title("derivada")
+            Label(text="Derivada", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
+            Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+            Label(text="En una función, límite hacia el cual tiende la razón entre\n el incremento de la función y el correspondiente a la variable cuando\n el incremento tiende a cero.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=260,y=120)
+            Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
+            Label(text="'f(x) = 5'  f'(x) = 0", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
+            Label(text="'f(x) = x^2' f'(x) = 2x", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
+            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ejercicio",command=lambda:self.ejercic('derivada')).place(x=370,y=390)
+        if accion == 'integral':
+            self.title("integral")
+            Label(text="integrales", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
+            Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+            Label(text="En una función, límite hacia el cual tiende la razón entre\n el incremento de la función y el correspondiente a la variable cuando\n el incremento tiende a cero.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=260,y=120)
+            Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
+            Label(text="'∫ (x+2)^3 dx'  = 1/4(x+2)^4+C", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
+            Label(text="'∫ sin^4(x) cos(x) dx' = 1/5sin^5(x)+C", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
+            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ejercicio",command=lambda:self.ejercic('derivada')).place(x=370,y=390)
         self.mainloop()
 
     def regres(self):
@@ -421,6 +447,7 @@ class ejercOpera(Tk):
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
+        self.columna = "operaciones_basicas"
         Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
         #Pantalla
         if accion == 'suma':
@@ -455,6 +482,22 @@ class ejercOpera(Tk):
             Label(text="100 / 25           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=180)
             Label(text="900 / 9        =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=220)
             Label(text="555 / 37          =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=280)
+        if accion == 'derivada':
+            self.title("derivada")
+            Label(text="Ejercicios de derivada", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+            Label(text="'f(x) = x^5'            f'(x)=", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=80)
+            Label(text="'f(x) = e^x'             f'(x)=", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=120)
+            Label(text="'f(x) = lnx'           f'(x)=", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=180)
+            Label(text="'f(x) = sin(x)'        f'(x)=", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=220)
+            Label(text="'f(x) = 5x^2'          f'(x)=", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=280)
+        if accion == 'integral':
+            self.title("integral")
+            Label(text="Ejercicios de derivada", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+            Label(text="'∫ tan(x) dx'            =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=80)
+            Label(text="'∫ (x+1)/x dx'           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=120)
+            Label(text="'∫ (5^x) dx'              =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=180)
+            Label(text="'∫ (3-sin(x) dx'          =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=220)
+            Label(text="'∫ tan^2(x) dx'          =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=280)
         self.c1 = Entry(width=10)
         self.c1.place(x=340,y=80)
         self.c2 = Entry(width=10)
@@ -477,11 +520,18 @@ class ejercOpera(Tk):
         bandera = False
         try:
             puntos = 0
-            r1 = int(self.c1.get())
-            r2 = int(self.c2.get())
-            r3 = int(self.c3.get())
-            r4 = int(self.c4.get())
-            r5 = int(self.c5.get())
+            if accion == 'suma' or accion == 'resta' or accion == 'multiplicacion' or accion == 'division':
+                r1 = int(self.c1.get())
+                r2 = int(self.c2.get())
+                r3 = int(self.c3.get())
+                r4 = int(self.c4.get())
+                r5 = int(self.c5.get())
+            else:
+                r1 = self.c1.get()
+                r2 = self.c2.get()
+                r3 = self.c3.get()
+                r4 = self.c4.get()
+                r5 = self.c5.get()
             if accion == 'suma':
                 if r1 == 21:
                     puntos+=1
@@ -526,7 +576,31 @@ class ejercOpera(Tk):
                     puntos+=1
                 if r5 == 15:
                     puntos+=1
-            ag.Agregar(self.usuario,'operaciones_basicas',puntos)
+            if accion == 'derivada':
+                self.columna = "derivada"
+                if r1 == '5x':
+                    puntos+=1
+                if r2 == 'e^x':
+                    puntos+=1
+                if r3 == '1/x':
+                    puntos+=1
+                if r4 == 'cos(x)':
+                    puntos+=1
+                if r5 == '10x':
+                    puntos+=1
+            if accion == 'integral':
+                self.columna = "integral"
+                if r1 == '-ln(cos(x))+c':
+                    puntos+=1
+                if r2 == 'x+ln(x)+c':
+                    puntos+=1
+                if r3 == '5^x/ln(5)':
+                    puntos+=1
+                if r4 == '3x+cos(x)':
+                    puntos+=1
+                if r5 == 'tan(x)-x+c':
+                    puntos+=1
+            ag.Agregar(self.usuario,self.columna,puntos)
         except:
             messagebox.showerror("Error", "Debe de ingresar números válidos")
         if puntos == 5:
@@ -538,7 +612,7 @@ class ejercOpera(Tk):
 
     def regresar(self):
         self.destroy()
-        ventana = opera(self.usuario)
+        ventana = mate(self.usuario)
 
 
 #----------------------------------------------------------------------------------
