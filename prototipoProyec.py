@@ -14,6 +14,8 @@ from tkinter import *
 from tkinter import messagebox
 import csv
 import Registrar as reg
+import AgregarInformacion as ag
+import graficas as gr
 
 class v1(Tk):
     def __init__(self):
@@ -48,7 +50,7 @@ class v1(Tk):
         ventana2 = Registro()
 
     def iniciarSesion(self):
-        self.usuario = (self.c1.get())
+        self.usuario = (self.c1.get()).lower()
         self.contra = (self.c2.get())
         datos = []
         with open("usuarios.csv", newline='') as ar:
@@ -63,7 +65,7 @@ class v1(Tk):
 
         if bandera:
             self.destroy()
-            ventana2 = v2()
+            ventana2 = v2(self.usuario)
         else:
             messagebox.showerror("Error","Error: Contraseña o Usuario incorrectos")
 
@@ -103,9 +105,10 @@ class Registro(Tk):
 
 
 class v2(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
         #Configuracion
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -127,26 +130,27 @@ class v2(Tk):
 
     def ventana3(self):
         self.destroy()
-        ventana3 = Primaria()
+        ventana3 = Primaria(self.usuario)
 
     def ventana4(self):
         self.destroy()
-        ventana4 = Secundaria()
+        ventana4 = Secundaria(self.usuario)
 
     def ventana5(self):
         self.destroy()
-        ventana5 = Bachillerato()
+        ventana5 = Bachillerato(self.usuario)
 
     def ventana6(self):
         self.destroy()
-        ventana6 = UniCursos()
+        ventana6 = UniCursos(self.usuario)
      
 
 class Primaria(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
         #Configuracion
         self.geometry("900x500")
+        self.usuario = usuario
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
         self.title("Primaria")
@@ -162,28 +166,29 @@ class Primaria(Tk):
     #regreso
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
     def matem(self):
         self.destroy()
-        ventana = mate()
+        ventana = mate(self.usuario)
         
     def comu(self):
         self.destroy()
-        ventana = comunicacion()
+        ventana = comunicacion(self.usuario)
 
     def cs(self):
         self.destroy()
-        ventana = ciencias()
+        ventana = ciencias(self.usuario)
 
     def ss(self):
         self.destroy()
-        ventana = sociales()
+        ventana = sociales(self.usuario)
    
 
 class Secundaria(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -201,23 +206,24 @@ class Secundaria(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
         
     def comu(self):
         self.destroy()
-        ventana = comunicacion()
+        ventana = comunicacion(self.usuario)
 
     def cs(self):
         self.destroy()
-        ventana = ciencias()
+        ventana = ciencias(self.usuario)
 
     def ss(self):
         self.destroy()
-        ventana = sociales()
+        ventana = sociales(self.usuario)
         
 class Bachillerato(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -235,14 +241,15 @@ class Bachillerato(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
     def comu(self):
         self.destroy()
-        ventana = comunicacion()
+        ventana = comunicacion(self.usuario)
 
 class UniCursos(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -260,11 +267,15 @@ class UniCursos(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
+
+
+#----------------------------------------------------------------------------------
 
 class mate(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -279,19 +290,49 @@ class mate(Tk):
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Cálculo").place(x=280,y=200)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones líneales").place(x=520,y=200)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones cuadraticas").place(x=40,y=290)
+        if self.usuario == 'gerax5' or self.usuario == 'angela':
+            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Estadisticas matematicas").place(x=350,y=400)
         self.mainloop()
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
     def operaciones(self):
         self.destroy()
-        ventana = opera()
+        ventana = opera(self.usuario)
+
+class estadisticas(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Estadisticas")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Estadisticas Matematicas", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=290,y=20)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Operaciones básicas",command=lambda:self.estadistica('operaciones_basicas')).place(x=40,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Derivadas").place(x=280,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Integrales").place(x=520,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Geometría").place(x=40,y=200)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Cálculo").place(x=280,y=200)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones líneales").place(x=520,y=200)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones cuadraticas").place(x=40,y=290)
+        self.mainloop()
+
+    def estadistica(self,accion):
+        gr.estadisticasMate(accion)
+
+    def regres(self):
+        self.destroy()
+        ventana = mate(self.usuario)
 
 class opera(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -299,62 +340,117 @@ class opera(Tk):
         Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
         #Pantalla 
         Label(text="Matemáticas", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=280,y=20)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Sumas",command=lambda:self.suma()).place(x=40,y=110)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Restas").place(x=280,y=110)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Multiplicacion").place(x=520,y=110)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Divisiones").place(x=40,y=200)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Sumas",command=lambda:self.operacionBasica('suma')).place(x=40,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Restas",command=lambda:self.operacionBasica('resta')).place(x=280,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Multiplicacion",command=lambda:self.operacionBasica('multiplicacion')).place(x=520,y=110)
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Divisiones",command=lambda:self.operacionBasica('division')).place(x=40,y=200)
         self.mainloop()
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
-    def suma(self):
+    def operacionBasica(self,accion):
         self.destroy()
-        ventana = sum()
+        ventana = pantallaOperacionBasica(self.usuario,accion)
 
 
-class sum(Tk):
-    def __init__(self):
+class pantallaOperacionBasica(Tk):
+    def __init__(self,usuario,accion):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
-        self.title("Sumas")
         Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        if accion == 'suma':
         #Pantalla 
-        Label(text="Sumas", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
-        Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
-        Label(text="Consiste en la adicion de dos o mas elementos para\nLlegar a un resultado final donde todo se incluye.\nEl simbolo de la suma es el simbolo mas (+) y se\nintercala entre los elementos que se quiere sumar", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=260,y=120)
-        Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
-        Label(text="4 + 5 = 9", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
-        Label(text="300 + 200 = 500", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ejercicio",command=lambda:self.ejercic()).place(x=370,y=390)
+            self.title("Sumas")
+            Label(text="Sumas", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
+            Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+            Label(text="Consiste en la adicion de dos o mas elementos para\nLlegar a un resultado final donde todo se incluye.\nEl simbolo de la suma es el simbolo mas (+) y se\nintercala entre los elementos que se quiere sumar", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=260,y=120)
+            Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
+            Label(text="4 + 5 = 9", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
+            Label(text="300 + 200 = 500", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
+            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ejercicio",command=lambda:self.ejercic('suma')).place(x=370,y=390)
+        if accion == 'resta':
+            self.title("Resta")
+            Label(text="Restas", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
+            Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+            Label(text="quitar una cantidad (el sustraendo) de otra (el minuendo)\npara averiguar la diferencia entre las dos\nse representa con el signo -.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=260,y=120)
+            Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
+            Label(text="800 - 400 = 400", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
+            Label(text="300 - 500 = -200", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
+            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ejercicio",command=lambda:self.ejercic('resta')).place(x=370,y=390)
+        if accion == 'multiplicacion':
+            self.title("multiplicacion")
+            Label(text="Multiplicacion", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
+            Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+            Label(text="Operación aritmética que consiste en calcular el resultado (producto)\n de sumar un mismo número (multiplicando) tantas veces como\n indica otro número (multiplicador)\n se representa con los signos · o ×.", font=("Times New Roman",15)).place(x=260,y=120)
+            Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
+            Label(text="5 * 5 = 25", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
+            Label(text="7 * 30 = 210", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
+            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ejercicio",command=lambda:self.ejercic('multiplicacion')).place(x=370,y=390)
+        if accion == 'division':
+            self.title("division")
+            Label(text="Divison", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
+            Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+            Label(text="Operacion aritmetica que consiste en la separación o partición\n de un todo en partes. Usual mente se representa por '/'", font=("Times New Roman",15)).place(x=260,y=120)
+            Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
+            Label(text="5 / 5 = 1", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
+            Label(text="80 / 8 = 10", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
+            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ejercicio",command=lambda:self.ejercic('division')).place(x=370,y=390)
         self.mainloop()
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
-    def ejercic(self):
+    def ejercic(self,accion):
         self.destroy()
-        ventana = ejerc()
+        ventana = ejercOpera(self.usuario,accion)
 
-class ejerc(Tk):
-    def __init__(self):
+class ejercOpera(Tk):
+    def __init__(self,usuario,accion):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
-        self.title("Sumas")
         Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
-        #Pantalla 
-        Label(text="Ejercicios de Suma", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
-        Label(text="8 + 13            =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=80)
-        Label(text="2 + 250           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=120)
-        Label(text="9 + 756           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=180)
-        Label(text="1590 + 258        =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=220)
-        Label(text="796 + 75          =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=280)
+        #Pantalla
+        if accion == 'suma':
+            self.title("Sumas")
+            Label(text="Ejercicios de Suma", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+            Label(text="8 + 13            =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=80)
+            Label(text="2 + 250           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=120)
+            Label(text="9 + 756           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=180)
+            Label(text="1590 + 258        =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=220)
+            Label(text="796 + 75          =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=280)
+        if accion == 'resta':
+            self.title("Resta")
+            Label(text="Ejercicios de Resta", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+            Label(text="25 - 13            =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=80)
+            Label(text="1000 - 2           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=120)
+            Label(text="9 - 756           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=180)
+            Label(text="5 - 3        =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=220)
+            Label(text="78 - 75          =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=280)
+        if accion == 'multiplicacion':
+            self.title("multiplicacion")
+            Label(text="Ejercicios de multiplicacion", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+            Label(text="25 * 5            =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=80)
+            Label(text="63 * 4           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=120)
+            Label(text="1000 * 1           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=180)
+            Label(text="1000 * 10        =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=220)
+            Label(text="50 * 30          =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=280)
+        if accion == 'division':
+            self.title("division")
+            Label(text="Ejercicios de division", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+            Label(text="25 / 5            =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=80)
+            Label(text="60 /  4           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=120)
+            Label(text="100 / 25           =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=180)
+            Label(text="900 / 9        =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=220)
+            Label(text="555 / 37          =", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=150,y=280)
         self.c1 = Entry(width=10)
         self.c1.place(x=340,y=80)
         self.c2 = Entry(width=10)
@@ -365,38 +461,90 @@ class ejerc(Tk):
         self.c4.place(x=340,y=220)
         self.c5 = Entry(width=10)
         self.c5.place(x=340,y=280)
-        Button(height=2, width=30 , bg="#deaaff", fg="#240046" , text="Verificar",command=lambda:self.ver()).place(x=340,y=390)
+
+        Button(height=2, width=30 , bg="#deaaff", fg="#240046" , text="Verificar",command=lambda:self.ver(accion)).place(x=340,y=390)
         self.mainloop()
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
-    def ver(self):
+    def ver(self,accion):
         bandera = False
         try:
+            puntos = 0
             r1 = int(self.c1.get())
             r2 = int(self.c2.get())
             r3 = int(self.c3.get())
             r4 = int(self.c4.get())
             r5 = int(self.c5.get())
-            if r1 == 21:
+            if accion == 'suma':
+                if r1 == 21:
+                    puntos+=1
                 if r2 == 252:
-                    if r3 == 765:
-                        if r4 == 1848:
-                            if r5 == 871:
-                                bandera = True
+                    puntos+=1
+                if r3 == 765:
+                    puntos+=1
+                if r4 == 1848:
+                    puntos+=1
+                if r5 == 871:
+                    puntos+=1
+            if accion == 'resta':
+                if r1 == 12:
+                    puntos+=1
+                if r2 == 998:
+                    puntos+=1
+                if r3 == -747:
+                    puntos+=1
+                if r4 == 2:
+                    puntos+=1
+                if r5 == 3:
+                    puntos+=1
+            if accion == 'multiplicacion':
+                if r1 == 125:
+                    puntos+=1
+                if r2 == 252:
+                    puntos+=1
+                if r3 == 1000:
+                    puntos+=1
+                if r4 == 10000:
+                    puntos+=1
+                if r5 == 1500:
+                    puntos+=1
+            if accion == 'division':
+                if r1 == 5:
+                    puntos+=1
+                if r2 == 15:
+                    puntos+=1
+                if r3 == 4:
+                    puntos+=1
+                if r4 == 100:
+                    puntos+=1
+                if r5 == 15:
+                    puntos+=1
+            ag.Agregar(self.usuario,'operaciones_basicas',puntos)
         except:
             messagebox.showerror("Error", "Debe de ingresar números válidos")
-        if bandera:
+        if puntos == 5:
             messagebox.showinfo("Informacion","Obtuviste todo correcto")
         else:
-            messagebox.showinfo("Informacion","Fallaste")
+            messagebox.showinfo("Informacion","Obtuviste "+str(puntos)+" buenas en este ejercicio")
+
+        self.regresar()
+
+    def regresar(self):
+        self.destroy()
+        ventana = opera(self.usuario)
+
+
+#----------------------------------------------------------------------------------
+
 #comunicacion
 
 class def_comunicacion(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -415,11 +563,12 @@ class def_comunicacion(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class procesos_de_la_comunicacion(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -438,11 +587,12 @@ class procesos_de_la_comunicacion(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class clases_y_estructura_sujeto(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -460,12 +610,13 @@ class clases_y_estructura_sujeto(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 
 class fonologia(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -489,12 +640,13 @@ class fonologia(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 
 class comunicacion(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -510,30 +662,31 @@ class comunicacion(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
     def def_c(self):
         self.destroy()
-        ventana = def_comunicacion()
+        ventana = def_comunicacion(self.usuario)
 
     def procesos(self):
         self.destroy()
-        ventana = procesos_de_la_comunicacion()
+        ventana = procesos_de_la_comunicacion(self.usuario)
 
     def sujeto(self):
         self.destroy()
-        ventana = clases_y_estructura_sujeto()
+        ventana = clases_y_estructura_sujeto(self.usuario)
 
     def fon(self):
         self.destroy()
-        ventana = fonologia()
+        ventana = fonologia(self.usuario)
 
 
 #ciencias
 
 class materia(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -549,11 +702,12 @@ class materia(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class sentidos(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x600")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -571,12 +725,13 @@ class sentidos(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class cuerpo(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
         self.geometry("900x550")
+        self.usuario = usuario
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
         self.title("El cuerpo humano")
@@ -592,11 +747,12 @@ class cuerpo(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class sentidos(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x600")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -614,7 +770,7 @@ class sentidos(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class diversidad(Tk):
     def __init__(self):
@@ -633,13 +789,14 @@ class diversidad(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 
 class ciencias(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
         self.geometry("900x500")
+        self.usuario = usuario
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
         self.title("Ciencias")
@@ -654,29 +811,30 @@ class ciencias(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
     def a(self):
         self.destroy()
-        ventana = materia()
+        ventana = materia(self.usuario)
 
     def b(self):
         self.destroy()
-        ventana = sentidos()
+        ventana = sentidos(self.usuario)
 
     def c(self):
         self.destroy()
-        ventana = cuerpo()
+        ventana = cuerpo(self.usuario)
 
     def d(self):
         self.destroy()
-        ventana = diversidad()
+        ventana = diversidad(self.usuario)
 
 #sociales
 
 class pre(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -690,11 +848,12 @@ class pre(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class diversidad_et(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -708,11 +867,12 @@ class diversidad_et(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class historia(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -726,11 +886,12 @@ class historia(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class continentes(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -743,11 +904,12 @@ class continentes(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
 class sociales(Tk):
-    def __init__(self):
+    def __init__(self,usuario):
         Tk.__init__(self)
+        self.usuario = usuario
         self.geometry("900x500")
         self.configure(bg="blueviolet")
         self.resizable(width=0, height=0)
@@ -763,22 +925,22 @@ class sociales(Tk):
 
     def regres(self):
         self.destroy()
-        ventana = v2()
+        ventana = v2(self.usuario)
 
     def a(self):
         self.destroy()
-        ventana = pre()
+        ventana = pre(self.usuario)
 
     def b(self):
         self.destroy()
-        ventana = diversidad_et()
+        ventana = diversidad_et(self.usuario)
 
     def c(self):
         self.destroy()
-        ventana = historia()
+        ventana = historia(self.usuario)
 
     def d(self):
         self.destroy()
-        ventana = continentes()
+        ventana = continentes(self.usuario)
 
 programa = v1()
