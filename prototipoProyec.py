@@ -6,7 +6,7 @@
     Recursos: python 3.10
     Catedratico: Ludwing Cano
     Auxiliares: Daniela Villamar y José Perez
-    ultima fecha de modificacion: 13/05/2022
+    ultima fecha de modificacion: 27/05/2022
 
 """
 #Módulos:
@@ -196,18 +196,22 @@ class Secundaria(Tk):
         Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
         #Pantalla 
         Label(text="¿Qué curso desea tomar?", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=260,y=20)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Matemáticas",command=lambda:self.ventana3()).place(x=280,y=110)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Matemáticas",command=lambda:self.matem()).place(x=280,y=110)
         Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Comunicación", command=lambda:self.comu()).place(x=280,y=170)
         Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Ciencias naturales", command=lambda:self.cs()).place(x=280,y=230)
         Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Sociales", command=lambda:self.ss()).place(x=280,y=290)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Computación").place(x=280,y=350)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Inglés").place(x=280,y=410)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Computación", command=lambda:self.c()).place(x=280,y=350)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Inglés", command=lambda:self.i()).place(x=280,y=410)
         self.mainloop()
 
     def regres(self):
         self.destroy()
         ventana = v2(self.usuario)
         
+    def matem(self):
+        self.destroy()
+        ventana = mate(self.usuario)
+
     def comu(self):
         self.destroy()
         ventana = comunicacion(self.usuario)
@@ -219,6 +223,14 @@ class Secundaria(Tk):
     def ss(self):
         self.destroy()
         ventana = sociales(self.usuario)
+
+    def c(self):
+        self.destroy()
+        ventana = computacion(self.usuario)
+
+    def i(self):
+        self.destroy()
+        ventana = ingles(self.usuario)
         
 class Bachillerato(Tk):
     def __init__(self,usuario):
@@ -231,20 +243,41 @@ class Bachillerato(Tk):
         Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
         #Pantalla 
         Label(text="¿Qué curso desea tomar?", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=260,y=20)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Matemáticas",command=lambda:self.ventana3()).place(x=280,y=110)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046", text="Matemáticas",command=lambda:self.matem()).place(x=280,y=110)
         Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Comunicación", command=lambda:self.comu()).place(x=280,y=170)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Quimica").place(x=280,y=230)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Seminario").place(x=280,y=290)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046",text="Computación").place(x=280,y=350)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Biología").place(x=280,y=410)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Quimica", command=lambda:self.qui()).place(x=280,y=230)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Seminario",command=lambda:self.semi()).place(x=280,y=290)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046",text="Computación", command=lambda:self.c()).place(x=280,y=350)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Biología",command=lambda:self.b()).place(x=280,y=410)
         self.mainloop()
 
     def regres(self):
         self.destroy()
         ventana = v2(self.usuario)
+
+    def matem(self):
+        self.destroy()
+        ventana = mate(self.usuario)
+
     def comu(self):
         self.destroy()
         ventana = comunicacion(self.usuario)
+
+    def c(self):
+        self.destroy()
+        ventana = computacion(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = biologia(self.usuario)
+
+    def qui(self):
+        self.destroy()
+        ventana = quimica(self.usuario)
+
+    def semi(self):
+        self.destroy()
+        ventana = seminario(self.usuario)
 
 class UniCursos(Tk):
     def __init__(self,usuario):
@@ -257,17 +290,41 @@ class UniCursos(Tk):
         Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
         #Pantalla 
         Label(text="¿Qué curso desea tomar?", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=260,y=20)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Matematicas",command=lambda:self.ventana3()).place(x=280,y=110)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Química").place(x=280,y=170)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Biología").place(x=280,y=230)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Física").place(x=280,y=290)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Cálculo").place(x=280,y=350)
-        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Programación").place(x=280,y=410)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Matematicas",command=lambda:self.matem()).place(x=280,y=110)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Química", command=lambda:self.qui()).place(x=280,y=170)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Biología",command=lambda:self.b()).place(x=280,y=230)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Física",command=lambda:self.fi()).place(x=280,y=290)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Cálculo",command=lambda:self.ca()).place(x=280,y=350)
+        Button(height=2, width=50 , bg="#deaaff", fg="#240046" ,text="Programación",command=lambda:self.pro()).place(x=280,y=410)
         self.mainloop()
 
     def regres(self):
         self.destroy()
         ventana = v2(self.usuario)
+
+    def matem(self):
+        self.destroy()
+        ventana = mate(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = biologia(self.usuario)
+
+    def qui(self):
+        self.destroy()
+        ventana = quimica(self.usuario)
+
+    def fi(self):
+        self.destroy()
+        ventana = fisica(self.usuario)
+
+    def ca(self):
+        self.destroy()
+        ventana = calculo(self.usuario)
+
+    def pro(self):
+        self.destroy()
+        ventana = progra(self.usuario)
 
 
 #----------------------------------------------------------------------------------
@@ -1020,5 +1077,677 @@ class sociales(Tk):
     def d(self):
         self.destroy()
         ventana = continentes(self.usuario)
+
+#compu
+class intro(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Introducción")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Introducción", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="\n\nLa computación es la ciencia que se ocupa de los procesos que describen y transforman información.\n A través de su estudio se sientan las bases para el diseño, la programación y el uso de computadoras \ndigitales. Desde hace varios años, son muchos los ámbitos que aprovechan elementos de este campo de \nconocimiento e incorporan computadoras. Solo por citar algunos, se puede mencionar la agricultura (que \nutiliza la computación para realizar análisis de suelos, plagas y hacer un control automático de maquinaria,\n entre otras cosas), la arquitectura (para diseñar, planificar y hacer seguimientos de obras y procesos \narquitectónicos) y la medicina (en la realización de diagnósticos, intervenciones quirúrgicas, etc.). ", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=90)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class hs(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Hardware y Software")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Hardware y Software", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Label(text="Hardware:\nEl hardware hace referencia a todos los componentes materiales y físicos de un dispositivo,\n es decir, aquellos que se pueden ver y tocar. El monitor, el ratón, la CPU, el teclado o la memoria\n RAM son algunos ejemplos de aquellas partes que, en su conjunto, forman el hardware.\n Este término tiene su origen etimológico en el inglés, donde “hard” significa “duro” \ny “ware”, “cosas”, por lo que se podría definir incluso como “las partes duras\n de una computadora”. Se distinguen dos tipos: interno y perifericos.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=90)
+        Label(text="Software:\nEl software es la parte digital del ordenador, es decir, el conjunto de instrucciones,\n programas y reglas informáticas que el equipo requiere para funcionar. No tiene, por consiguiente, \nuna existencia física, sino que es intangible e inmaterial, como los programas para \nel procesamiento de textos o el sistema operativo. Este término fue acuñado por el matemático \nJohn Wilder Tukey en 1958 para referirse a los programas que hacían trabajar\n a las calculadoras electrónicas. El software se clasifica en: de sistema,\n aplicacion y de programación.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=260)
+        
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class almacenamiento(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Almacenamiento de información")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Almacenamiento de información", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=120,y=20)
+        Label(text="\nLos ordenadores actuales se basan en una tecnologia electronica digital, en\ncomparacion a otros dispositivos que utilizan senal analogica.\nPodemos identificar la idea de digital con discreto: en un sistema digital\nas variables de entrada y salida son magnitudes (en general senales\nelectricas) discretas o que se toman como tales, y se procesan como\nvalores discretos. Es decir, solo un numero entero y concreto de valores son\nposibles.\nPor el contrario, podemos identificar la idea de analogico con 'continuo': en\nun sistema analogico sus variables de entrada y salida son magnitudes (en\ngeneral, senales electricas) continuas y se procesan como valores\ncontinuos, es decir, pueden alcanzar cualquier valor dentro de un espectro\ndeterminado.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=80,y=90)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class sistema(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.geometry("900x500")
+        self.usuario = usuario
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Sistema binario")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Sistema binario", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="\nEl sistema binario es un lenguaje que utiliza 2 dígitos binarios, el 0 y el 1, \ndonde cada símbolo constituye un bit, denominado en inglés como binary bit o bit binario.\n 8 bits constituyen un byte y cada byte contiene un caracter, letra o número.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=80,y=90)
+        Label(text="\nCódigo binario:  El código binario es el sistema numérico usado para la representación de \ntextos, o procesadores de instrucciones de computadora, utilizando el sistema binario \n(sistema numérico de dos dígitos, o bit: el «0» /cerrado/ y el «1» /abierto/).\n En informática y telecomunicaciones, el código binario se utiliza con variados \nmétodos de codificación de datos, tales como cadenas de caracteres, o cadenas de bits. \nEstos métodos pueden ser de ancho fijo o ancho variable. ", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=55,y=190)
+        
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class computacion(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Computación")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Computación", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Introducción",command=lambda:self.a()).place(x=120,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Hardware y Software",command=lambda:self.b()).place(x=400,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Almacenamiento de información",command=lambda:self.c()).place(x=400,y=280)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Sistema binario",command=lambda:self.d()).place(x=120,y=280)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+    def a(self):
+        self.destroy()
+        ventana = intro(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = hs(self.usuario)
+
+    def c(self):
+        self.destroy()
+        ventana = almacenamiento(self.usuario)
+
+    def d(self):
+        self.destroy()
+        ventana = sistema(self.usuario)
+
+#ingles
+class salu2(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x600")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Saludos y expresiones")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Saludos y expresiones", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=270,y=20)
+        Label(text="\nLa mayoría de las expresiones que vamos a ver a continuación constituyen frases \nidiomáticas o modismos. Los modismos son formas del idioma que no obedecen \nalgunas reglas gramaticales y muchas de ellas no tienen traducción literal.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=90)
+        Label(text="Buenos Días = Good Morning\n Buenas Tardes = Good Afternoon\n Buenas Noches  = (Al Llegar A Un Lugar) Good Evening\n Buenas Noches = (Para Despedirnos) Good Night\n Por Favor = Please\n Disculpe = Excuse Me\n ¿Cómo está usted? = How Are You?\n Gracias = Thanks\n Gracias (A Usted) = Thank You\n Muchísimas Gracias = Thank You Very Much\n Por Nada, No Hay De Que = You Are Welcome\n Adiós = Good Bye\n Muy Bien = Very Well\n Correcto, Muy Bien = All Right\n Bien = Fine\n Un Poco = A Little\n Un Poquito = A Little Bit ", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=190,y=190)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class preguntas(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Preguntas 'Wh'")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Preguntas 'Wh'", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=270,y=20)
+        Label(text="\nEn lecciones anteriores ya hemos aprendido a realizar preguntas. Vamos a profundizar un \npoco más para aprender a hacer preguntas más complejas.\nLa estructura de una pregunta básica es:\nQuestion word + auxiliary verb + sujetos + verb+ complement + interrogative form", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=90)
+        Label(text="\nWhat = Qué - What is this? ¿Qué es esto?  \nWhere = Dónde - Where is my pen? ¿Dónde está mi lapicero?\nWho = Quién - Quiénes Who are you? ¿Quién eres tú?\nHow = Cómo - How is your father?¿Cómo está tu padre?\nWhich = Cuál - Which is your English classroom, number 11 or 15??\n  ¿Cuál es tu salón de inglés, el salón 11 o el 15??\nWhy= Por qué - Why are you sad? ¿Por qué estas triste?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=170,y=240)
+        
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class ingles(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Computación")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Inglés", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Saludos y expresiones",command=lambda:self.a()).place(x=120,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Preguntas 'Wh'",command=lambda:self.b()).place(x=400,y=110)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+    def a(self):
+        self.destroy()
+        ventana = salu2(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = preguntas(self.usuario)
+
+#biologia
+class introduccion(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Introducción")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Introducción", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="\nEs la ciencia natural que estudia todo lo relacionado con la vida y lo orgánico,\n incluyendo los procesos, sistemas, funciones, mecanismos u otros caracteres biológicos\n subyacentes a los seres vivos en diversos campos especializados que abarcan su morfología,\n fisiología, filogénesis, desarrollo, evolución, distribución e interacciones en los niveles \nmacroscópico y microscópico.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=90)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class org(Tk):
+    def __init__(self, usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Organismos vivos")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Organismos vivos", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=280,y=20)
+        Label(text="\nUn organismo vivo es el resultado de los procesos bioquímicos que se dan gracias\n a la organización compleja de la materia con la siguiente jerarquía:\n\nCélula: Unidad mínima estructural y funcional de los organismos vivos.\nTejido: Conjunto de células de la misma naturaleza que desempeñan una función en común.\nÓrgano: Grupo de diversos tejidos que forman una unidad funcional.\nAparatos: Sistema de órganos que desempeñan una función particular.\nOrganismo: Resultado de la organización y funcionamiento de los niveles anteriores.\nEspecie: Grupo de seres semejantes entre sí.​\nPoblación: Conjunto de una especie en una área determinada.\nComunidad: Población que interactúa en una área determinada.\nEcosistema: Comunidad que se desarrolla con los medios físicos de un ambiente.\nBiosfera: Conjunto de los recursos donde se desarrolla la vida.\n", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=90)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class foto(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Fotosíntesis")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Fotosíntesis", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Label(text="\nProceso químico que se produce en las plantas, las algas y algunos tipos de bacterias \ncuando se exponen a la luz del sol. Durante la fotosíntesis, el agua y el dióxido de carbono \nse combinan para formar carbohidratos (azúcares) y se desprende oxígeno. La fotosíntesis es necesaria \npara la vida de los animales y las plantas.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=90)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class evolucion(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Evolución")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Evolución", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Label(text="\nLa evolución, en relación con la genómica, se refiere al proceso por el cual los organismos \nvivos cambian con el tiempo a través de cambios en el genoma. Esos cambios evolutivos \nocurren por mutaciones que producen variación genómica, lo que da lugar a la aparición\n de individuos cuyas funciones biológicas o rasgos físicos están alterados. Esos individuos\n que están mejor adaptados a su entorno producen más descendencia que los individuos\n menos adaptados. Por lo tanto, con sucesivas generaciones (que en algunos casos abarcan\n millones de años), una especie puede evolucionar para asumir funciones o características \nfísicas divergentes o, incluso, puede evolucionar en una especie diferente.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=90)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class biologia(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Biología")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Biología", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Introducción",command=lambda:self.a()).place(x=120,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Organismos vivos",command=lambda:self.b()).place(x=400,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Fotosíntesis",command=lambda:self.c()).place(x=400,y=280)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Evolución",command=lambda:self.d()).place(x=120,y=280)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+    def a(self):
+        self.destroy()
+        ventana = introduccion(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = org(self.usuario)
+
+    def c(self):
+        self.destroy()
+        ventana = foto(self.usuario)
+
+    def d(self):
+        self.destroy()
+        ventana = evolucion(self.usuario)
+
+#quimica
+class introdu(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Introducción")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Introducción", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="\nCiencia que estudia la composición y propiedades de las sustancias y las \nreacciones por las que unas sustancias se transforman en otras..", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class atomos(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Átomos")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Átomos", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="\nParte más pequeña de una sustancia que no se puede descomponer químicamente. Cada átomo\n tiene un núcleo (centro) compuesto de protones (partículas positivas) y neutrones (partículas sin carga).\n Los electrones (partículas negativas) se mueven alrededor del núcleo. Los átomos \nde diferentes elementos contienen diferentes números de protones, neutrones y electrones.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class mol(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("El mol")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="El mol", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="El mol es una de las magnitudes estipuladas por el Sistema Internacional de Unidades (SI).\n Su símbolo es “mol”.\nEl mol es definido como la cantidad de materia que contiene determinado número \nde entidades elementales (átomos, moléculas, etc) equivalente a la cantidad de átomos que hay en \n12 gramos del isótopo carbono-12 (12C).La masa de un mol de sustancia\n (llamada masa molar) es equivalente a la masa atómica o molecular (según se haya considerado \nun mol de átomos o de moléculas) expresada en gramos.El número de Avogadro \n(NA) es la cantidad de partículas ( moléculas, átomos, electrones) \nque contiene un mol de una sustancia cualquiera. Es una constante \nque corresponde al valor de 6,022×10^23 mol-1. Por tanto, 1 mol de cualquier sustancia \ncontiene 6,022×10^23 entidades elementales de esa sustancia.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+
+class quimica(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Química")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Química", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Introducción",command=lambda:self.a()).place(x=120,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Átomos",command=lambda:self.b()).place(x=400,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="El mol",command=lambda:self.c()).place(x=260,y=280)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+    def a(self):
+        self.destroy()
+        ventana = introdu(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = atomos(self.usuario)
+
+    def c(self):
+        self.destroy()
+        ventana = mol(self.usuario)
+
+#fisica
+
+class des(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Descripción del movimiento \nen un sistema no inercial")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Descripción del movimiento \nen un sistema no inercial", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=220,y=20)
+        #Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="\nEn mecánica newtoniana se dice que un sistema de referencia es no inercial cuando \nen él no se cumplen las leyes del movimiento de Newton. Dado un sistema de referencia inercial,\n un segundo sistema de referencia será no inercial cuando describa un movimiento acelerado\n con respecto al primero. Fuerzas inerciales como Centrífuga, Coriolis, etc. ", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class ele(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Introducción a la electrostática")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Introducción a la electrostática", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=220,y=20)
+        Label(text="\nLa electrostática es la rama de la física que analiza los efectos mutuos que \nse producen entre los cuerpos como consecuencia de sus cargas eléctricas, es decir, \nel estudio de las cargas eléctricas en equilibrio. Leyes de Coulomb y de Gauss. Ecuaciones\n de Laplace y Poisson. Método de imágenes. Funciones de Green. Resolución de problemas \nde contorno en coordenadas cartesianas, esféricas y \ncilíndricas. Multipolos.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+
+class fisica(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Física")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Física", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Descripción del movimiento \nen un sistema no inercial",command=lambda:self.a()).place(x=120,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Introducción a la electrostática",command=lambda:self.b()).place(x=400,y=110)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+    def a(self):
+        self.destroy()
+        ventana = des(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = ele(self.usuario)
+
+#calculo
+class lim(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Límite funcional")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Límite funcional", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=230,y=20)
+        Label(text="\nEl límite de una función es un concepto fundamental del análisis matemático \naplicado a las funciones.1​ En particular, el concepto se refiere en análisis real al estudio\n de límites, continuidad y derivabilidad de las funciones reales.\nIntuitivamente, el hecho de que una función f alcance un límite L en un punto c\n significa que, tomando puntos suficientemente próximos a c, el valor de f puede \nser tan cercano a L como se desee. La cercanía de los valores de f y L no \ndepende del valor que adquiere f en dicho punto c.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class fun(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Funciones trigonométricas")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Funciones trigonométricas", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=230,y=20)
+        Label(text="\nLas funciones trigonométricas son las funciones de un ángulo. \nEstas usualmente incluyen términos que describen la medición de ángulos y triángulos,\n tal como seno, coseno, tangente, cotangente, secante y cosecante. Los ángulos en las funciones\n trigonométricas se expresan como radianes.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class calculo(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Cálculo")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Cálculo", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Límite funcional",command=lambda:self.a()).place(x=120,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Funciones trigonométricas",command=lambda:self.b()).place(x=400,y=110)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+    def a(self):
+        self.destroy()
+        ventana = lim(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = fun(self.usuario)
+
+#seminario
+
+class vida(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Proyecto de vida")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Proyecto de vida", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="\nUn proyecto de vida se refiere a la definición de un plan de lo que se\n desea hacer en la vida. Es una idea que toda persona diseña, con el fin de conseguir \nuno o varios propósitos para su existencia, en otras palabras, se asocia al \nconcepto de realización personal, donde lleva a las personas a definir conscientemente las \nopciones que puede tener para conducir su vida y alcanzar el destino que se propone.\n Un proyecto de vida le da un por qué y un para qué a la existencia humana.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class nacion(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Proyecto nación")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Proyecto nación", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="\nEl proyecto de nación es un ejercicio ciudadano mediante el cual, losmiembros de cada \ncomunidad de investigación del curso de seminario,tienen la oportunidad de plantear por\n escrito sus expectativas y sueñoscon respecto a su país, sabiéndose parte protagonista en los \ncambios ydesarrollo del mismo.Es un plan que refleja una visión de futuro comprometida\n con la mejorade una colectividad. Dentro del programa: Es un ejercicio cívico o actividad \npara iniciar nuestra participación ciudadana. Es un ejercicio deesperanza. No tiene que tener\n un título específico, más que: Proyecto de nación", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class casos(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Estudio de casos")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Estudio de casos", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="\nEstudio de caso es una herramienta de investigación y una técnica de aprendizaje\n que puede ser aplicado en cualquier área de conocimiento.\nEl objetivo fundamental de los estudios de caso es conocer y comprender \nla particularidad de una situación para distinguir cómo funcionan \nlas partes y las relaciones con el todo.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+
+class seminario(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Seminario")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Seminario", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Proyecto de vida",command=lambda:self.a()).place(x=120,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Proyecto nación",command=lambda:self.b()).place(x=400,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Estudio de casos",command=lambda:self.c()).place(x=260,y=280)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+    def a(self):
+        self.destroy()
+        ventana = vida(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = nacion(self.usuario)
+
+    def c(self):
+        self.destroy()
+        ventana = casos(self.usuario)
+
+#programacion
+class py(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Python")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Python", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="\nPython es un lenguaje de alto nivel de programación interpretado cuya filosofía \nhace hincapié en la legibilidad de su código, se utiliza para desarrollar aplicaciones\n de todo tipo, ejemplos: Instagram, Netflix, Panda 3D, entre otros. \n Se trata de un lenguaje de programación multiparadigma, ya que soporta parcialmente\n la orientación a objetos, programación imperativa y, en menor medida, \nprogramación funcional. Es un lenguaje interpretado, dinámico y multiplataforma.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+class java(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Java")
+        Button(text="Regresar", bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Java", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=320,y=20)
+        Label(text="¿Qué es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
+        Label(text="\nJava es una plataforma informática de lenguaje de programación creada por\n Sun Microsystems en 1995. Ha evolucionado desde sus humildes comienzos hasta impulsar \nuna gran parte del mundo digital actual, ya que es una plataforma fiable \nen la que se crean muchos servicios y aplicaciones. Los nuevos e innovadores\n productos y servicios digitales diseñados para el futuro también siguen\n basándose en Java.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=40,y=120)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+
+class progra(Tk):
+    def __init__(self,usuario):
+        Tk.__init__(self)
+        self.usuario = usuario
+        self.geometry("900x500")
+        self.configure(bg="blueviolet")
+        self.resizable(width=0, height=0)
+        self.title("Programación")
+        Button(text="Regresar",  bg="#5a189a", fg="White", command=lambda:self.regres()).place(x=835,y=5)
+        #Pantalla 
+        Label(text="Programación", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=300,y=20)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text=" Python",command=lambda:self.a()).place(x=120,y=110)
+        Button(height=10, width=35 , bg="#deaaff", fg="#240046" ,text="Java",command=lambda:self.b()).place(x=400,y=110)
+        self.mainloop()
+
+    def regres(self):
+        self.destroy()
+        ventana = v2(self.usuario)
+
+    def a(self):
+        self.destroy()
+        ventana = py(self.usuario)
+
+    def b(self):
+        self.destroy()
+        ventana = java(self.usuario)
 
 programa = v1()
