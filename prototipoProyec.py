@@ -291,8 +291,12 @@ class mate(Tk):
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones líneales").place(x=520,y=200)
         Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Ecuaciones cuadraticas").place(x=40,y=290)
         if self.usuario == 'gerax5' or self.usuario == 'angela':
-            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Estadisticas matematicas").place(x=350,y=400)
+            Button(height=2, width=30 , bg="#deaaff", fg="#240046" ,text="Estadisticas matematicas",command=lambda:self.esta()).place(x=350,y=400)
         self.mainloop()
+
+    def esta(self):
+        self.destroy()
+        ventana = estadisticas(self.usuario)
 
     def regres(self):
         self.destroy()
@@ -386,7 +390,7 @@ class pantallaOperacionBasica(Tk):
             self.title("multiplicacion")
             Label(text="Multiplicacion", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
             Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
-            Label(text="Operación aritmética que consiste en calcular el resultado (producto)\n de sumar un mismo número (multiplicando) tantas veces como\n indica otro número (multiplicador)\n se representa con los signos · o ×.", font=("Times New Roman",15)).place(x=260,y=120)
+            Label(text="Operación aritmética que consiste en calcular el resultado (producto)\n de sumar un mismo número (multiplicando) tantas veces como\n indica otro número (multiplicador)\n se representa con los signos · o ×.", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=260,y=120)
             Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
             Label(text="5 * 5 = 25", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
             Label(text="7 * 30 = 210", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)
@@ -395,7 +399,7 @@ class pantallaOperacionBasica(Tk):
             self.title("division")
             Label(text="Divison", fg="White", bg="blueviolet", font=("Times New Roman",30)).place(x=390,y=20)
             Label(text="¿Que es?", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=80)
-            Label(text="Operacion aritmetica que consiste en la separación o partición\n de un todo en partes. Usual mente se representa por '/'", font=("Times New Roman",15)).place(x=260,y=120)
+            Label(text="Operacion aritmetica que consiste en la separación o partición\n de un todo en partes. Usual mente se representa por '/'", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=260,y=120)
             Label(text="Ejemplos:", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=50,y=220)
             Label(text="5 / 5 = 1", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=300)
             Label(text="80 / 8 = 10", fg="White", bg="blueviolet", font=("Times New Roman",15)).place(x=90,y=350)

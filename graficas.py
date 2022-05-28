@@ -6,4 +6,6 @@ def estadisticasMate(columna):
     grf = dtf[['usuario','operaciones_basicas']]
     grf = grf.groupby('usuario').mean()
     grf.plot(kind='bar')
+    plt.xlabel("Usuarios")
+    plt.ylabel("Promedio Notas")
     plt.show()
